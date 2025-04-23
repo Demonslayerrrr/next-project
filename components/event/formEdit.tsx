@@ -8,7 +8,7 @@ interface CityI {
   name: string;
 }
 
-export default function FormEdit() {
+export default function FormEdit({ initialData }: { initialData: any }) {
   const [cities, setCities] = useState<CityI[]>([]);
 
   useEffect(() => {
@@ -47,14 +47,14 @@ export default function FormEdit() {
     const form = e.target as HTMLFormElement;
 
     const event: any = {
-      name: (form[0] as HTMLInputElement).value !== null ? (form[0] as HTMLInputElement).value : undefined,
-      desc: (form[1] as HTMLInputElement).value !== null ? (form[1] as HTMLInputElement).value : undefined,
-      date: (form[2] as HTMLInputElement).value !== null ? (form[2] as HTMLInputElement).value : undefined,
-      url: (form[4] as HTMLInputElement).value !== null ? (form[4] as HTMLInputElement).value : undefined,
-      price: (form[5] as HTMLInputElement).value !== null ? (form[5] as HTMLInputElement).value : undefined,
-      city: (form[3] as HTMLSelectElement).value !== null ? (form[3] as HTMLInputElement).value : undefined
-    };
-
+      _id: initialData._id,
+      name: (form[0] as HTMLInputElement).value || initialData.name,
+      desc: (form[1] as HTMLInputElement).value || initialData.desc,
+      date: (form[2] as HTMLInputElement).value || initialData.date,
+      url: (form[4] as HTMLInputElement).value || initialData.url,
+      price: (form[5] as HTMLInputElement).value || initialData.price,
+      city: (form[3] as HTMLSelectElement).value || initialData.city
+    }
     try {
       const res = await axios.patch("/api/dashboard/patch-event", { event });
       if (res.data.success) {
@@ -80,6 +80,7 @@ export default function FormEdit() {
             type="text"
             placeholder="Enter event name"
             className={input_form}
+            defaultValue={initialData.name}
           />
         </div>
 
@@ -90,6 +91,7 @@ export default function FormEdit() {
           <textarea 
             placeholder="Enter event description"
             className={`${input_form} min-h-[100px] max-h-[200px] resize-y`}
+            defaultValue={initialData.desc}
           />
         </div>
 
@@ -101,6 +103,7 @@ export default function FormEdit() {
             <input 
               type="date" 
               className={`${input_form} cursor-pointer`}
+              defaultValue={initialData.date}
             />
           </div>
 
@@ -129,6 +132,7 @@ export default function FormEdit() {
             type="url"
             className={input_form}
             placeholder="https://..."
+            defaultValue={initialData.url}
           />
         </div>
 
@@ -142,6 +146,7 @@ export default function FormEdit() {
             placeholder="Enter price"
             min="0"
             step="0.01"
+            defaultValue={initialData.price}
           />
         </div>
 

@@ -6,6 +6,7 @@ import Item from "@/components/event/item";
 import Form from "@/components/event/form";
 import Image from "next/image";
 import Plus from "@/public/plus.svg";
+import Link from "next/link";
 
 interface EventI {
   _id: string;
@@ -54,6 +55,9 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-blue-950 p-6">
+      <div className="flex justify-between items-center mb-8">
+        <Link href="/service/admin" className="text-white hover:text-blue-300 transition-colors">&lt; Back to Admin</Link>
+      </div>
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 bg-blue-900/50 p-4 rounded-lg backdrop-blur-sm">
           <h2 className="text-xl font-bold text-white mb-4">Filter by City</h2>
@@ -68,6 +72,7 @@ export default function Dashboard() {
             >
               All Cities
             </button>
+            
             {cities.map((city) => (
               <button
                 key={city._id}

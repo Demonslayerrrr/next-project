@@ -115,7 +115,7 @@ export default function Item(props: PropsI) {
                     >
                       <span className="text-2xl">×</span>
                     </button>
-                    <FormEdit />
+                    <FormEdit initialData={event} />
                   </div>
                 </div>
       )}

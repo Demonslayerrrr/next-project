@@ -28,7 +28,6 @@ export async function GET() {
 
     const data = await response.json();
 
-
     const cities = (data?.data ?? [])
       .sort((a: any, b: any) => b.population - a.population) 
       .map((city: any) => ({

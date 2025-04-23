@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-blue-950">
+    <div className="min-h-screen" style={{ backgroundColor: "#0f172a" }}>
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -22,15 +22,15 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          <div className="bg-blue-900/50 backdrop-blur-sm p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
+          <div className="bg-blue-900/50 backdrop-blur-md p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
             <h3 className="text-xl font-bold text-white mb-3">🔹 Konferencje Gamedev</h3>
             <p className="text-blue-200">Poznaj najnowsze trendy w branży i dowiedz się, jak tworzyć gry, które zachwycą graczy na całym świecie.</p>
           </div>
-          <div className="bg-blue-900/50 backdrop-blur-sm p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
+          <div className="bg-blue-900/50 backdrop-blur-md p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
             <h3 className="text-xl font-bold text-white mb-3">🔹 Game Jamy i Konkursy</h3>
             <p className="text-blue-200">Pokaż swoje umiejętności, twórz gry w ograniczonym czasie i rywalizuj z najlepszymi!</p>
           </div>
-          <div className="bg-blue-900/50 backdrop-blur-sm p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
+          <div className="bg-blue-900/50 backdrop-blur-md p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-200">
             <h3 className="text-xl font-bold text-white mb-3">🔹 Warsztaty z Ekspertami</h3>
             <p className="text-blue-200">Ucz się od profesjonalistów z wieloletnim doświadczeniem i odkryj tajniki projektowania, programowania i marketingu gier.</p>
           </div>

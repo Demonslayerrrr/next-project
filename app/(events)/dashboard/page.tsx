@@ -52,9 +52,6 @@ export default function Events() {
   return (
     <div className="min-h-screen bg-blue-950 p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <Link href="/service/admin" className="text-white hover:text-blue-300 transition-colors">&lt; Back to Admin</Link>
-        </div>
         {showForm && <div className="mb-8"><Form /></div>}
         <div className="mb-8 bg-blue-900 p-4 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold text-white mb-4">Filter by City</h2>
@@ -73,7 +70,7 @@ export default function Events() {
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event) => <Item key={event._id} event={event} />)
           ) : (
-            <div className="col-span-full text-center text-white text-lg">No events found for this filter</div>
+            <div className="col-span-full text-center text-white text-lg">Brak eventów</div>
           )}
         </div>
       </div>

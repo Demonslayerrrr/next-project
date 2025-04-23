@@ -7,31 +7,33 @@ type ResponseData = {
   message?: string;
 };
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest) {
   try {
     await connect();
 
-    const { id } = params;
+    const { event } = await request.json();
 
-    const updatedData = await request.json();
-
-    const event = await Event.findById(id);
-
-    if (!event) {
-      return NextResponse.json<ResponseData>({ success: false });
+    if (!event || !event._id) {
+      return NextResponse.json<ResponseData>({ success: false, message: "Missing event or event._id" });
     }
 
-    Object.keys(updatedData).forEach((key) => {
-      if (updatedData[key] !== undefined) {
-        event[key] = updatedData[key]; 
+    const existingEvent = await Event.findById(event._id);
+
+    if (!existingEvent) {
+      return NextResponse.json<ResponseData>({ success: false, message: "Event not found" });
+    }
+
+    Object.entries(event).forEach(([key, value]) => {
+      if (key !== "_id") {
+        existingEvent[key] = value;
       }
     });
 
-    await event.save();
+    await existingEvent.save();
 
     return NextResponse.json<ResponseData>({ success: true });
   } catch (error) {
     console.error("Error updating event:", error);
-    return NextResponse.json<ResponseData>({ success: false });
+    return NextResponse.json<ResponseData>({ success: false, message: "Server error" });
   }
 }
